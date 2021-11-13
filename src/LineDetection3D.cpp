@@ -563,7 +563,9 @@ void LineDetection3D::lineFromMask( cv::Mat &mask, int thLineLengthPixel, std::v
 	
 	std::vector<std::vector<cv::Point> > contours;  
 	std::vector<cv::Vec4i> hierarchy;  
-	cv::findContours(mask2, contours, hierarchy, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
+	// https://github.com/pupil-labs/pupil/issues/1154
+	//cv::findContours(mask2, contours, hierarchy, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
+	cv::findContours(mask2, contours, hierarchy, RETR_LIST, CHAIN_APPROX_NONE);
 
 	// B. line fitting from the contours
 	for ( int i=0; i<contours.size(); ++i )
